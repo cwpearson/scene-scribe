@@ -1,0 +1,7 @@
+.DS_Store
+*.pdf
+*.mp4
+*.webm
+**/__pycache__
+.venv
+.python-version

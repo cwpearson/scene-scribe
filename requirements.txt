@@ -1,0 +1,10 @@
+pyannote.audio
+sqlalchemy
+openai-whisper
+click
+ncls
+imagehash
+pillow
+opencv-python-headless
+scipy
+tqdm
