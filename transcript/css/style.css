@@ -1,0 +1,70 @@
+body {
+    font-family: sans-serif;
+}
+
+h1 {
+    text-align: center;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+}
+
+.image-container {
+    width: 40%;
+    vertical-align: top;
+}
+
+.text-container {
+    width: 60%;
+    padding-left: 1rem;
+    vertical-align: top;
+}
+
+.time-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    h2 {
+        flex-grow: 0;
+    }
+
+    hr {
+        flex-grow: 1;
+        height: 0px;
+        margin: 20px;
+    }
+}
+
+.speech-prob-low {
+    background-color: #FFAFAF;
+}
+
+.speech-prob-med {
+    background-color: #FFE6AF;
+}
+
+img {
+    max-width: 100%;
+    /* Makes image responsive */
+    height: auto;
+}
+
+.footer {
+    background-color: lightgray;
+
+    table {
+        table-layout: fixed;
+        width: 100%;
+
+        td {
+            equal-width: auto;
+            text-align: center;
+        }
+    }
+}
+
+/* Add more styling as needed */

@@ -15,6 +15,9 @@ pip install -r requirements.txt
 HF_TOKEN=python -m transcribe path/to/video.mp4
 ```
 
+* Diarizing consumes about 2.7 GB of GPU memory.
+
+
 ## Todo
 
 does condense_segments need to happen where it is? It rejoins segments split by scene.

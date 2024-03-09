@@ -6,6 +6,7 @@ import os
 from typing import List, Tuple
 import math
 import datetime
+import shutil
 
 
 import whisper
@@ -29,6 +30,7 @@ from transcript.logging import log
 
 HF_ACCESS_TOKEN = os.environ["HF_TOKEN"]
 SCENE_CHANGE_DHASH_DELTA = 14
+THIS_DIR = Path(__file__).parent
 
 
 class Speaker(Base):
@@ -699,69 +701,15 @@ def text_output(session: Session, segments):
 
 def html_output(session: Session, segments, root_dir: Path, title=None) -> str:
 
+    shutil.copy(THIS_DIR / "css" / "style.css", root_dir / "style.css")
+
     c = """
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <title>Document</title>
-<style>
-    body {
-        font-family: sans-serif;
-    }
-    h1 {
-        text-align: center;
-    }
-    .row {
-        display: flex;
-        flex-direction: row;
-    }
-    .image-container {
-        width: 40%;
-        vertical-align: top;
-    }
-    .text-container {
-        width: 60%;
-        padding-left: 1rem;
-        vertical-align: top;
-    }
-    .time-container {
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        h2 {
-            flex-grow: 0;
-        }
-        hr {
-            flex-grow: 1;
-            height: 0px;
-            margin: 20px;
-        }
-    }
-    .speech-prob-low {
-        background-color: #FFAFAF;
-    }
-    .speech-prob-med {
-        background-color: #FFE6AF;
-    }
-    img {
-        max-width: 100%; /* Makes image responsive */
-        height: auto;
-    }
-    .footer {
-        background-color: lightgray;
-        table {
-        table-layout: fixed;
-            width: 100%;
-            td {
-                equal-width: auto;
-                text-align: center;
-            }
-        }
-    }
-    /* Add more styling as needed */
-</style>
+<link href="style.css" rel="stylesheet" />
 </head>
 <body>
 """
@@ -903,6 +851,8 @@ def get_screencap(
             str(video_path),
             "-frames:v",
             "1",
+            "-qscale:v", # lower quality, 2-31, 2 is highest
+            "5",
             str(output_path),
         ]
         log(f"run {cmd}")
